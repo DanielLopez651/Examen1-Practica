@@ -278,22 +278,26 @@ public class VentanaDocentesAsignados extends javax.swing.JInternalFrame {
         if (curso.isEmpty() || materia.isEmpty()) {
             JOptionPane.showMessageDialog(this, "falta campos");
         } else {
-            controladorCurso.crearA(curso, materia);
+            System.out.println("llega");
+//            controladorCurso.crearA(curso, materia);
             controladorCurso.ingreesarRegex("\\/store\\/apps\\/details\\?id=com\\.(.[^\\\"\\s])+");
             StringBuilder stringBuilder = new StringBuilder();
+            System.out.println("eerere");
             try {
                 URL urlObject = new URL("https://play.google.com/store/search?q=" + materia.
                         replaceAll("//s", "//+") + "&c=apps");
+                System.out.println("aaa");
                 URLConnection uRLConnection = urlObject.openConnection();
                 uRLConnection.setRequestProperty("User-Agent", "Mozilla/5.0(Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko)Chrome/23.0.1271.95 Safari/537.11");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(uRLConnection.getInputStream(),
                         "UTF-8"));
+                System.out.println("aaa3333");
                 String inputLine;
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     stringBuilder.append(inputLine);
                 }
             } catch (IOException ex) {
-
+                 System.out.println("llamame bb");
             }
             DefaultListModel mo = new DefaultListModel();
             Set<String> resp = controladorCurso.obtenerURLGoogle(stringBuilder.toString());
